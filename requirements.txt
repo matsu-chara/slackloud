@@ -1,0 +1,6 @@
+slacker==0.9.21
+wordcloud==1.2.1
+mecab-python3==0.7
+numpy==1.11.1
+pillow==3.3.0
+matplotlib==1.5.0
