@@ -22,8 +22,7 @@ def remove_after_mecab(texts):
 def read_stopwords():
     return [
         u'ちゃん', u'みたい', u'感じ', u'思い', u'場合',
-        u'すぎる', u'ところ', u'くれる', u'くださる', u'the', u'it',
-        u'to', u'is', u'channel', u'joined'
+        u'すぎる', u'ところ', u'くれる', u'くださる', u'the', u'it'
     ]
 
 def unescape(texts):

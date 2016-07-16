@@ -23,7 +23,10 @@ class MySlack(object):
     def history(self, channel):
         channel_id = self._get_channel_id(channel)
         history = self.client.channels.history(channel=channel_id, count=1000).body
-        return [x["text"] for x in history["messages"] if x["text"] is not None]
+        return [
+            x["text"] for x in history["messages"]
+            if x["text"] is not None and ("subtype" in x) is False
+        ]
 
     def upload_file(self, channel, file_path):
         channel_id = self._get_channel_id(channel)
