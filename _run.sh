@@ -44,15 +44,15 @@ do
 done
 
 if [ $with_build -eq 1 ]; then
-  docker build -t slackloud:latest .
+  docker build -t matsuchara/slackloud:latest .
 fi
 
 if [ "$flag" = "post" ]; then
-  docker run -i -t --rm slackloud "$TOKEN" "#${param[0]}" "#$post_channel"
+  docker run -i -t --rm matsuchara/slackloud "$TOKEN" "#${param[0]}" "#$post_channel"
 elif [ "$flag" = "cp" ]; then
-  docker run -i -t slackloud "$TOKEN" "#${param[0]}" "no"
+  docker run -i -t matsuchara/slackloud "$TOKEN" "#${param[0]}" "no"
   docker cp "$(docker ps -lq):/app/wordcloud.png" .
   docker rm "$(docker ps -lq)" > /dev/null
 else
-  docker run -i -t --rm slackloud "$TOKEN" "#${param[0]}" "#${param[0]}"
+  docker run -i -t --rm matsuchara/slackloud "$TOKEN" "#${param[0]}" "#${param[0]}"
 fi
