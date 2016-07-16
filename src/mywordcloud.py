@@ -19,7 +19,7 @@ class MyWordCloud(object):
         )
 
     def generate(self, text, dest_path):
-        plt.figure(figsize=(10, 10))
+        plt.figure(figsize=(15, 15))
         plt.imshow(self.word_cloud.generate(text))
         plt.axis("off")
         plt.savefig(dest_path, bbox_inches="tight", pad_inches=0.0)
