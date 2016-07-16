@@ -11,16 +11,12 @@
 #1 get your slack token
 # https://api.slack.com/web#authentication
 
-#2 build image
-docker build -t slackloud:latest .
-
-#3 run container
-docker run -i -t --name slackloud "YOUR_SLACK_TOKEN" "#CHANNEL" "#POST_CHANNEL"
-
-#3 (b) you can also use
+#2 copy run.sh & write your token
 cp _run.sh run.sh
 vim run.sh
-./run.sh "#CHANNEL" "#POST_CHANNEL"
+
+#3 generate image and post to slack! ( `-b` means "with docker build". `-h` show help.)
+./run.sh "#CHANNEL"
 ```
 
 ## linting
