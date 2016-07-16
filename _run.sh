@@ -18,5 +18,4 @@ set -eu
 ### if you changed the source, turn this on.
 # docker build -t slackloud:latest .
 
-docker run -i -t --rm slackloud "TOKEN" "$1"
-
+docker run -i -t --rm slackloud "TOKEN" "$1" "$2"
