@@ -14,12 +14,12 @@ class MyWordCloud(object):
     def __init__(self, stop_words, font_path="/usr/share/fonts/truetype/fonts-japanese-gothic.ttf"):
         self.stop_words = stop_words
         self.word_cloud = WordCloud(
-            background_color="white", font_path=font_path, width=900, height=900,
+            background_color="white", font_path=font_path, width=600, height=600,
             stopwords=set(self.stop_words)
         )
 
     def generate(self, text, dest_path):
-        plt.figure(figsize=(15, 15))
+        plt.figure(figsize=(6, 6))
         plt.imshow(self.word_cloud.generate(text))
         plt.axis("off")
         plt.savefig(dest_path, bbox_inches="tight", pad_inches=0.0)
