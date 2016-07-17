@@ -31,6 +31,5 @@ COPY requirements.txt /app/
 RUN pip3 install -r requirements.txt
 
 # install app
-COPY src /app/src
 ENV PYTHONIOENCODING utf-8
 ENTRYPOINT ["python3", "/app/src/slackloud.py"]
