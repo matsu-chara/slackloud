@@ -7,7 +7,7 @@
 
 ## USAGE
 
-```
+```bash
 #1 get your slack token
 # https://api.slack.com/web#authentication
 
@@ -29,7 +29,7 @@ open result/wordcloud.png
 
 ## linting
 
-```
+```bash
 hadolint Dockerfile
 pylint src
 ```
