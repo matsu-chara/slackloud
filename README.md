@@ -19,7 +19,7 @@ cp _run.sh run.sh
 vim run.sh
 
 #4 generate image and post to slack! ( `-b` means "with docker build". `-h` show help.)
-./run.sh "#CHANNEL"
+./run.sh "CHANNEL"
 ```
 
 ## linting
