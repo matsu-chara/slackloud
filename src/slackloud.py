@@ -26,7 +26,6 @@ def main():
     token, channel, post_channel = parse_arg(sys.argv)
 
     slack = MySlack(token)
-    slack.eval_channel_id()
 
     history = slack.history(channel)
     processed_history = words.remove_before_mecab(words.unescape(history))
