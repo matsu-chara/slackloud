@@ -27,9 +27,9 @@ RUN curl -s https://bootstrap.pypa.io/get-pip.py | python3
 # clean apt-get
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# install app
 COPY requirements.txt /app/
 RUN pip3 install -r requirements.txt
 
-# install app
 ENV PYTHONIOENCODING utf-8
 ENTRYPOINT ["python3", "/app/src/slackloud.py"]

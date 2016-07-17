@@ -14,12 +14,17 @@
 #2 pull image
 docker pull matsuchara/slackloud
 
-#3 copy run.sh & write your token
-cp _run.sh run.sh
-vim run.sh
+#3 prepare run.sh
+cat << EOF > run.sh
+#!/bin/bash
+./_run.sh "YOUR_TOKEN" "\$@"
+EOF
 
-#4 generate image and post to slack! ( `-b` means "with docker build". `-h` show help.)
+#4 generate image ( `./run.sh -h` show help.)
 ./run.sh "CHANNEL"
+
+#5 your wordcloud is here!
+open result/wordcloud.png
 ```
 
 ## linting

@@ -35,7 +35,7 @@ def main():
     processed_analyzed = words.remove_after_mecab(analyzed)
 
     word_cloud = MyWordCloud(words.read_stopwords())
-    word_cloud_file_path = "/app/wordcloud.png"
+    word_cloud_file_path = "/app/result/wordcloud.png"
     word_cloud.generate(" ".join(processed_analyzed), word_cloud_file_path)
 
     if post_channel != "no":

@@ -1,16 +1,15 @@
 #!/bin/bash
 
-set -eu
+set -e
 
-TOKEN=""
+script_dir="$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)"
 
 usage() {
-    echo "Usage: ./run.sh [OPTIONS] FILE"
+    echo "Usage: ./run.sh [OPTIONS] CHANNEL_NAME"
     echo "Options:"
     echo "  -h, help"
     echo "  -b, build docker image"
-    echo "  --post CHANNEL_NAME, post to CHANNEL_NAME"
-    echo "  --cp, no post. cp image to host."
+    echo "  --post POST_CHANNEL_NAME, post image to POST_CHANNEL_NAME"
     exit 1
 }
 
@@ -30,10 +29,7 @@ do
                 echo "option requires an argument -- $1" 1>&2
                 exit 1
             fi
-            flag="post"; post_channel="$2"; shift 2
-            ;;
-        '--cp' )
-            flag="cp"; shift 1
+            flag="post"; param_post_channel="$2"; shift 2
             ;;
         *)
             if [[ ! -z "$1" ]] && [[ ! "$1" =~ ^-+ ]]; then
@@ -43,16 +39,19 @@ do
     esac
 done
 
+token="${param[0]}"
+channel="#${param[1]}"
+post_channel="no"
+
 if [ $with_build -eq 1 ]; then
-  docker build -t matsuchara/slackloud:latest .
+  docker build -t 'matsuchara/slackloud:latest' "$script_dir"
 fi
 
 if [ "$flag" = "post" ]; then
-  docker run -i -t -v src:/app/src --rm matsuchara/slackloud "$TOKEN" "#${param[0]}" "#$post_channel"
-elif [ "$flag" = "cp" ]; then
-  docker run -i -t -v src:/app/src matsuchara/slackloud "$TOKEN" "#${param[0]}" "no"
-  docker cp "$(docker ps -lq):/app/wordcloud.png" .
-  docker rm "$(docker ps -lq)" > /dev/null
-else
-  docker run -i -t -v src:/app/src --rm matsuchara/slackloud "$TOKEN" "#${param[0]}" "#${param[0]}"
+  post_channel="#$param_post_channel"
 fi
+
+# for rm container whether script succeeded or failed
+set +e
+
+docker run -i -t --rm -v "${script_dir}/src:/app/src" -v "${script_dir}/result:/app/result" matsuchara/slackloud:latest "$token" "$channel" "$post_channel"
