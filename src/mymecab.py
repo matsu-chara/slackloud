@@ -14,21 +14,21 @@ import subprocess
 class MyMeCab(object):
 
     def __init__(self,
-                 dict_path="/usr/lib/mecab/dic/mecab-ipadic-neologd/",
-                 user_dict_path="/app/dic/"):
-        self.dict_path = dict_path
-        self.user_dict_path = user_dict_path
+                 dic_path="/usr/lib/mecab/dic/mecab-ipadic-neologd/",
+                 user_dic_path="/app/dic/"):
+        self.dic_path = dic_path
+        self.user_dic_path = user_dic_path
 
-    def build_user_dict(self):
-        if self.user_dict_path == "":
+    def build_user_dic(self):
+        if self.user_dic_path == "":
             return
 
-        files = self._remove_ext(self._files(self.user_dict_path, "csv"))
+        files = self._remove_ext(self._files(self.user_dic_path, "csv"))
         for f in files:
             target = f + ".csv"
             dest = f + ".dic"
             command_template = "/usr/lib/mecab/mecab-dict-index -d %s -u %s -f utf-8 -t utf-8 %s"
-            command = command_template % (self.dict_path, dest, target)
+            command = command_template % (self.dic_path, dest, target)
             dev_null = open(os.devnull, 'w')
             subprocess.call(command.split(" "), stdout=dev_null)
 
@@ -51,13 +51,13 @@ class MyMeCab(object):
 
     def _mecab_args(self):
         args = "-Ochasen"
-        if self.dict_path != "":
-            args += " -d %s" % self.dict_path
+        if self.dic_path != "":
+            args += " -d %s" % self.dic_path
 
-        if self.user_dict_path != "":
+        if self.user_dic_path != "":
             args += " -u "
-            dicts = self._files(self.user_dict_path, "dic")
-            args += ",".join(dicts)
+            dics = self._files(self.user_dic_path, "dic")
+            args += ",".join(dics)
 
         return args
 
