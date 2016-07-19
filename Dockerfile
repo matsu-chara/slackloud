@@ -31,5 +31,14 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt /app/
 RUN pip3 install -r requirements.txt
 
+### start: for debugging inside container
+# you can test your user_dict login with
+# `docker run -i -t --entrypoint=/bin/bash matsuchara/slackloud`
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+### end: for debugging inside container
+
 ENV PYTHONIOENCODING utf-8
 ENTRYPOINT ["python3", "/app/src/slackloud.py"]
