@@ -41,7 +41,7 @@ done
 
 token="${param[0]}"
 channel="#${param[1]}"
-post_channel="no"
+post_channel=""
 
 if [ $with_build -eq 1 ]; then
   docker build -t 'matsuchara/slackloud:latest' "$script_dir"

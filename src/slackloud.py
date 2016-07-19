@@ -14,13 +14,12 @@ from mymecab import MyMeCab
 from mywordcloud import MyWordCloud
 
 # (return token, channel, post_channel)
-# when argv[3] is not defined, post_channel == channel
 def parse_arg(argv):
     if len(argv) < 3:
         print("Usage: # python %s token channel" % argv[0])
         quit()
 
-    return (argv[1], argv[2], argv[3] if (len(argv) == 4) else argv[2])
+    return (argv[1], argv[2], argv[3] if (len(argv) == 4) else "")
 
 def main():
     token, channel, post_channel = parse_arg(sys.argv)
@@ -38,7 +37,7 @@ def main():
     word_cloud_file_path = "/app/result/wordcloud.png"
     word_cloud.generate(" ".join(processed_analyzed), word_cloud_file_path)
 
-    if post_channel != "no":
+    if post_channel != "":
         slack.upload_file(post_channel, word_cloud_file_path)
 
 if __name__ == '__main__':
