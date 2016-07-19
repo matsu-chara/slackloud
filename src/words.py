@@ -15,8 +15,8 @@ def remove_before_mecab(texts):
 
 # remove words after mecab analyze
 def remove_after_mecab(texts):
-    regex = re.compile(r"[ぁ-ん]{0,2}")
-    return [regex.sub('', x) for x in texts]
+    regex = re.compile(r"^[ぁ-ん]{0,2}$")
+    return [x for x in texts if regex.search(x) is None]
 
 # this words will pass to WordCloud instance
 def read_stopwords():
