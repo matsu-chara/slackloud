@@ -26,7 +26,7 @@ class MyMeCab(object):
         while node:
             if node.surface != "":  # remove header and footer
                 word_type = node.feature.split(",")[0]
-                if word_type in ["動詞", "名詞"]:
+                if word_type in ["名詞"]:
                     output.append(node.surface)
             node = node.next
             if node is None:
