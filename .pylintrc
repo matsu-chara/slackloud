@@ -3,7 +3,7 @@ variable-rgx=[a-z_][a-z0-9_]{0,30}$
 
 [MESSAGES CONTROL]
 #docstring missing, unable to import
-disable=C0111,F0401
+disable=C0111,F0401,R0201
 
 [DESIGN]
 min-public-methods=1
