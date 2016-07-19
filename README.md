@@ -12,7 +12,7 @@
 # https://api.slack.com/web#authentication
 
 #2 pull image
-docker pull matsuchara/slackloud
+docker pull matsuchara/slackloud:latest
 
 #3 prepare run.sh
 cat << EOF > run.sh
