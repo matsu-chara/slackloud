@@ -54,4 +54,4 @@ fi
 # for rm container whether script succeeded or failed
 set +e
 
-docker run -i -t --rm -v "${script_dir}/src:/app/src" -v "${script_dir}/result:/app/result" matsuchara/slackloud:latest "$token" "$channel" "$post_channel"
+docker run -i -t --rm -v "${script_dir}/src:/app/src" -v "${script_dir}/dic:/app/dic" -v "${script_dir}/result:/app/result" matsuchara/slackloud:latest "$token" "$channel" "$post_channel"

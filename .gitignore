@@ -1,4 +1,7 @@
 run.sh
+/dic
+!/dic/chara.csv
+
 /*.png
 result/*.png
 

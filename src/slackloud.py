@@ -30,6 +30,7 @@ def main():
     processed_history = words.remove_before_mecab(words.unescape(history))
 
     mecab = MyMeCab()
+    mecab.build_user_dict()
     analyzed = mecab.parse(" ".join(processed_history))
     processed_analyzed = words.remove_after_mecab(analyzed)
 
