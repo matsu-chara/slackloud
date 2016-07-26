@@ -31,7 +31,4 @@ class MySlack(object):
             ids = self.client.channels.list(exclude_archived=1).body
             self._ids = dict((x["name"], x["id"]) for x in ids["channels"])
 
-        channel_id = self._ids.get(name.replace("#", ""))
-        if channel_id is None:
-            raise RuntimeError("%s is not found or eval_channel_id wasn't called" % name)
-        return channel_id
+        return self._ids[name.replace("#", "")]
